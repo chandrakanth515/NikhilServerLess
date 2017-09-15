@@ -1,0 +1,60 @@
+<div class="container-fluid">
+  <h3>Assessments</h3><br>
+  <div *ngIf="data?.length == 0" class="spin1">
+      <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div> 
+  <div *ngIf="data?.length > 0" id="tableContainer">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Assessment-Name</th>
+          <th>Total Questions</th>
+          <th>Duration</th>
+          <th>Passing Percentage</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of data;let i= index">
+          <td>{{data.test_name | uppercase}}</td>
+          <td>{{data.total_questions}}</td>
+          <td>{{data.test_duration/60}} mins</td>
+          <td>{{data.passing_marks}}%</td>
+          <td class="link" *ngIf="data.test_status == null" (click)="statusClick(data)">Attend</td>
+          <td class="link" *ngIf="data.test_status == 'completed'" (click)="getResult(data)" data-toggle="modal" data-target="#myModal">Completed</td>
+          <td class="link" *ngIf="data.test_status == 'Pending'" (click)="statusClick(data)">Resume</td>
+          <td class="link" *ngIf="data.test_status == 'Time UP'" (click)="statusClick(data)" data-toggle="modal" data-target="#myModal">Timed-out</td>
+          <td class="link" *ngIf="data.test_status == 'Review Pending'" (click)="statusClick(data)">Resume</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div><br>
+
+<!--Result Modal -->
+  <div id="myModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Assessment Result</h4>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="!result?.final_score" class="resultModal">
+            <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+        </div>
+        <div *ngIf="result?.final_score">
+          <p><span>Assessment Name:</span>&nbsp;&nbsp;{{result?.test_name | uppercase}}</p><br>
+          <p><span>Your Score:</span>&nbsp;&nbsp;{{result?.final_score}}</p>
+          <p><span>Passing Score:</span>&nbsp;&nbsp;{{result?.passing_marks}}</p>
+          <p><span>Result:</span>&nbsp;&nbsp;{{result?.result}}</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" data-dismiss="modal" (click)="onClose()">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

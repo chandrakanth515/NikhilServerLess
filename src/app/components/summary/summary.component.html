@@ -1,0 +1,80 @@
+<div class=" ept container-fluid">
+    <div class="circleBase type2">{{min}}:{{sec}}<br><span style="font-size:10px;padding-left: 5px">mins</span></div><br>
+    <h4>Review<span class="info"><i class="fa fa-circle" aria-hidden="true"></i>&nbsp;Marked for review</span></h4>
+    <div class="row">
+      <div *ngIf="questions?.length == 0" class="col-md-12" style="text-align: center;">
+          <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+      </div>
+      <div class="col-sm-2" *ngFor="let question of questions;">
+          <div *ngIf="questions?.length != 0">
+            <p class="rw">{{question?.question_sequence}}.&nbsp; {{question?.selected_option}}&nbsp;
+              <span class="ch" data-toggle="modal" data-target="#myModal" (click)="reviewQuestion(question)">Change</span>
+              <i *ngIf="question?.review_flag == 'true'" class="fa fa-circle dot" aria-hidden="true"></i>
+            </p>
+          </div>
+      </div>
+    </div><br><br>
+    <div class="row" style="text-align: center;">
+        <button type="button" class="btn" (click)="onSubmitTest();">Submit Test</button>
+    </div>
+</div>
+
+<!--Question Modal -->
+<div id="myModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="onClose();" >&times;</button>
+        <h4 class="modal-title">Question: {{question?.question_sequence}}</h4>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="!question?.question" style="text-align: center;">
+            <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+        </div>
+        <div *ngIf="question?.question" class="question">
+            <div class="circleBase type2">{{min}}:{{sec}}<br><span style="font-size:10px;padding-left: 7px">mins</span></div><br>
+            <p>{{question?.question}}</p><br>
+            <div *ngIf="question?.option_A" class="well well-sm checkbox"><label><input type="checkbox" #optA value="option_A" name="option_A" [(ngModel)]="option_A" (change)="selectedOption(optA);">{{question?.option_A}}</label></div>
+            <div *ngIf="question?.option_B" class="well well-sm checkbox"><label><input type="checkbox" #optB value="option_B" name="option_B" [(ngModel)]="option_B" (change)="selectedOption(optB);">{{question?.option_B}}</label></div>
+            <div *ngIf="question?.option_C" class="well well-sm checkbox"><label><input type="checkbox" #optC value="option_C" name="option_C" [(ngModel)]="option_C" (change)="selectedOption(optC);">{{question?.option_C}}</label></div>
+            <div *ngIf="question?.option_D" class="well well-sm checkbox"><label><input type="checkbox" #optD value="option_D" name="option_D" [(ngModel)]="option_D" (change)="selectedOption(optD);">{{question?.option_D}}</label></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="col-md-2 checkbox"><label><input type="checkbox" #rev name="review" [(ngModel)]="review" (change)="selectReview(rev);">Review</label></div>
+        <button type="button" class=" col-md-offset-8 col-md-2 btn" data-dismiss="modal" (click)="onSaveChange(question)">Save</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!--Result Modal -->
+<div id="resultModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Assessment Result</h4>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="!result?.final_score" style="text-align: center;">
+            <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+        </div>
+        <div *ngIf="result?.final_score">
+          <p><span>Assessment Name:</span>&nbsp;{{result?.test_name | uppercase}}</p><br>
+          <p><span>Your Score:</span>&nbsp;{{result?.final_score}}</p>
+          <p><span>Passing Score:</span>&nbsp;{{result?.passing_marks}}</p>
+          <p><span>Result:</span>&nbsp;{{result?.result}}</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" data-dismiss="modal" [routerLink]="['/']" >Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

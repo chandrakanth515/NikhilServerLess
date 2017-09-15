@@ -1,0 +1,84 @@
+.table, h3, h4, button, .modal-content{
+    font-family: 'Comfortaa', sans-serif;
+}
+
+h3{
+    margin-top: 0px;
+    color:#1e3267;
+    padding-left: 45px;
+}
+
+
+/*Table*/
+
+td,th{
+    text-align: center;
+}
+
+th{
+    color:#1e3267;
+}
+
+.link:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+tbody{
+    color: black;
+}
+
+.table tbody tr:hover{
+    background-color: #1e3267;
+    color: white; 
+}
+
+.container-fluid{
+    color:black;
+    overflow-x:auto; 
+}
+
+#tableContainer{
+    padding: 30px!important;
+    background-color: #eee;
+    margin: 0 45px;
+}
+
+/*spinner*/
+.spin, .spin1{
+    text-align: center;
+    padding-top: 100px;
+    color: black;
+}   
+
+.resultModal{
+    padding-top: 15px;
+    text-align: center;
+}
+
+/*Modal*/
+.modal-header{
+    color: white;
+    background-color: #1e3267;
+}
+
+.modal-footer, .modal-body{
+    background-color: black;
+    color: white;
+}
+
+.modal-footer{
+    border-top: none;
+}
+
+span{
+    color: #b6c7f3;
+}
+
+button, .btn:hover{
+    background-color: #169050;
+    border-radius: 20px;
+    color: white;
+}
+
+button:focus {outline:0!important;}

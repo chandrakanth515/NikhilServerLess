@@ -1,0 +1,36 @@
+<div class="row">
+    <button type="button" class="col-md-offset-11 end btn" (click)="endTest();">End Test</button>
+</div>
+<div class="container-fluid">
+    <div *ngIf="!question?.question_sequence" class="spin">
+        <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+    </div>
+    <div *ngIf="question?.question_sequence">
+        <div class="circleBase type2">{{min}}:{{sec}}<br><span style="font-size: 10px;">mins</span></div><br>
+        <div>
+            <i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;&nbsp;
+            <span>QUESTION {{question?.question_sequence}} OF {{total_questions}}</span>&nbsp;&nbsp;
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        </div>
+
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" [style.width]="progress + '%'">
+            </div>
+        </div><br>
+        <form #testForm="ngForm">
+            <div class="question">
+                <p style="margin-bottom: 0px;">{{question?.question}}</p><br>
+                <div *ngIf="question?.option_A" class="well well-sm checkbox"><label><input type="checkbox" #optA value="option_A" name="option_A" [(ngModel)]="option_A" (change)="selectedOption(optA);">{{question?.option_A}}</label></div>
+                <div *ngIf="question?.option_B" class="well well-sm checkbox"><label><input type="checkbox" #optB value="option_B" name="option_B" [(ngModel)]="option_B" (change)="selectedOption(optB);">{{question?.option_B}}</label></div>
+                <div *ngIf="question?.option_C" class="well well-sm checkbox"><label><input type="checkbox" #optC value="option_C" name="option_C" [(ngModel)]="option_C" (change)="selectedOption(optC);">{{question?.option_C}}</label></div>
+                <div *ngIf="question?.option_D" class="well well-sm checkbox"><label><input type="checkbox" #optD value="option_D" name="option_D" [(ngModel)]="option_D" (change)="selectedOption(optD);">{{question?.option_D}}</label></div>
+            </div>
+
+            <div class="submitBtn ">
+                <button type="button" [disabled]="isFirst" class="prevBtn col-md-4 btn" (click)="onPrevious();">Previous</button>
+                <div class="col-md-4 checkbox"><label><input type="checkbox" #rev name="review" [(ngModel)]="review" (change)="selectReview(rev);">Review</label></div>
+                <button type="button" [disabled]="!valid" class="nextBtn col-md-4 btn" (click)="onNext();">Next</button>
+            </div>
+        </form>
+    </div>
+</div>

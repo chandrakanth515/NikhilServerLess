@@ -1,0 +1,80 @@
+.container-fluid{
+    width:40%;
+    color: white;
+    font-family: 'Comfortaa', sans-serif;
+    text-align: center;
+    background-color: black!important;
+}
+
+.progress-bar{
+    background-color:white;
+}
+
+.progress{
+    background-color:#1e3267;
+    width: 60%;
+    margin: auto;
+    height: 10px;
+}
+
+.question{
+    text-align: left;
+}
+
+.well{
+    background-color:#1e3267;
+    border-style: none;
+}
+
+button{
+    color:white!important;
+    background-color: #169050;
+    border-radius: 20px;
+}
+button:focus { outline:0 !important; }
+button:hover { color:white !important; }
+
+.circleBase {
+    margin: auto;
+    border-radius: 50%;
+}
+
+.type2 {
+    padding-top: 12px;
+    width: 60px;
+    height: 60px;
+    background:black;
+    color: #07f507;
+    border: 3px solid #2b3c2b;
+}
+
+.submitBtn{
+    text-align: center;
+}
+
+/*spinner*/
+.spin{
+    text-align: center;
+    padding-top: 100px;
+}
+
+.fa{
+    color: white;
+}
+
+.end{
+    background-color: #6f2626;
+    font-size: 15px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+@media only screen and (max-width: 500px) {
+    button{
+        margin-bottom: 5px;
+    }
+
+    .container-fluid{
+        width: 100%;
+    }
+}
